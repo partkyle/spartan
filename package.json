@@ -8,7 +8,10 @@
     "type": "git",
     "url": "git://github.com/partkyle/spartan.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "connect": "*",
+    "connect-assets": "*"
+  },
   "devDependencies": {},
   "optionalDependencies": {},
   "bin" : { "spartan": "./bin/spartan" },
