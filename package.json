@@ -2,7 +2,7 @@
   "author": "Kyle Partridge <partkyle@gmail.com>",
   "name": "spartan",
   "description": "Single Page Rapid Testing And Node",
-  "version": "0.0.0",
+  "version": "0.0.0-2",
   "homepage": "github.com/partkyle/spartan",
   "repository": {
     "type": "git",
@@ -11,6 +11,7 @@
   "dependencies": {},
   "devDependencies": {},
   "optionalDependencies": {},
+  "bin" : { "spartan": "./bin/spartan" },
   "engines": {
     "node": "*"
   }
