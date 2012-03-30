@@ -6,7 +6,7 @@ var assets  = require('connect-assets')
 var port = 3000
 
 var app = connect()
-
+app.use(connect.logger('dev'))
 app.use(assets())
 
 console.log(js('application'))
