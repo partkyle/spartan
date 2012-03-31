@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "connect": "*",
-    "connect-assets": "*"
+    "connect-assets": "*",
+    "jade": "*"
   },
   "devDependencies": {},
   "optionalDependencies": {},

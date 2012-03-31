@@ -2,14 +2,28 @@
 
 var connect = require('connect')
 var assets  = require('connect-assets')
+var fs      = require('fs')
+var jade    = require('jade')
 
 var port = 3000
 
 var app = connect()
+app.use(connect.favicon())
 app.use(connect.logger('dev'))
 app.use(assets())
+app.use(function(req, res) {
+  var filename = 'index.jade'
+  fs.readFile(filename, 'utf8', function(err, data) {
+    if (err) {
+      console.log(err)
+      return res.end('Problem with file: ' + filename)
+    }
 
-console.log(js('application'))
+    var fn = jade.compile(data, this)
+
+    res.end(fn())
+  })
+})
 
 app.listen(port)
 console.log('Listening on port %d', port)
