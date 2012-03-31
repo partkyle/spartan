@@ -4,8 +4,27 @@ var connect = require('connect')
 var assets  = require('connect-assets')
 var fs      = require('fs')
 var jade    = require('jade')
+var path    = require('path')
+var eco     = require('eco')
 
 var port = 3000
+
+var __cwd = process.cwd()
+
+assets.jsCompilers.eco = {
+  match: /\.jst.eco/,
+  compileSync: function(sourcePath, source) {
+    var fileName = path.basename(sourcePath, '.jst.eco')
+    var directoryName = path.dirname(sourcePath).replace(__cwd + '/assets/js/', '')
+    var jstPath = directoryName ? directoryName + '/' + fileName + '.eco' : fileName + '.eco'
+    return [
+      '(function() {',
+      '  this.JST || (this.JST = {});',
+      '  this.JST["' + jstPath + '"] = ' + eco.precompile(source),
+      '}).call(this);'
+    ].join('')
+  }
+}
 
 var app = connect()
 app.use(connect.favicon())
